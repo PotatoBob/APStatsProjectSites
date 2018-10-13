@@ -1,0 +1,50 @@
+<html>
+<head>
+    <style>
+        button.BIG {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 40px;
+        }
+    </style>
+<title>Web Page Design</title>
+	<script type="text/javascript">
+        function uselessWebButton(button/*, popup*/) {
+            var urls = [
+                "https://drive.google.com/open?id=1uKjDUBXqeKwcyt9TSC4wrDU8W3H3xuI9J2EyMyoynHo",
+                "https://drive.google.com/open?id=1LCQIsKZlJEMyB6y7RFZ_LUQby9FF2o_7Mr5Ixi5AJjM",
+"https://drive.google.com/open?id=1aW-ZyWOMbAQjk93ljWReJS8DszXawB489SW2YCbSGDc"
+
+            ];
+            var init = function() {
+                button.onclick = onButtonClick;
+            };
+            var onButtonClick = function() {
+                goSomewhere();
+            };
+            /*var onButtonClick = function() {
+                var url = selectWebsite()[0];
+		openSite(url);
+            }*/
+            init();
+            function goSomewhere() {
+                var url = urls[Math.floor(Math.random()*urls.length)];
+                //window.location = url; // redirect
+                window.open(url);
+            }
+        }
+        
+	</script>
+</head>
+<body>
+<h5><button id='button' class='BIG'>CLICK HERE</button></h5>
+			<script>
+				var uselessWebButton = new uselessWebButton( document.getElementById( 'button' ) ); 
+			</script>
+</body>
+</html>"# APStatsProjectSites" 
