@@ -1,8 +1,8 @@
 <html>
 <head>
     <style type="text/CSS">
-        button.BIG {
-            background-color: #4CAF50; /* Green */
+        /*button.BIG {
+            background-color: #4CAF50; // Green 
             border: none;
             color: white;
             padding: 15px 32px;
@@ -10,13 +10,28 @@
             text-decoration: none;
             display: inline-block;
             font-size: 40px;
-        }
-				.smallNum {
-					width:40px;
-				}
-				.bigButt {
-					font-size:40px;
-				}
+        }*/
+		.smallNum {
+			width: 140px;
+			height: 100px;
+			font-size: 100px;
+		}
+		.bigButt {
+			background-color: #4CAF50;
+			border: none;
+			padding: 15px 32px;
+			color: white;
+			font-size: 40px;
+		}
+		#container {
+			display: flex;              /* establish flex container */
+			flex-direction: column;     /* stack flex items vertically */
+			justify-content: center;    /* center items vertically, in this case */
+			align-items: center;        /* center items horizontally, in this case */
+			height: 300px;
+			border: 1px solid black;
+		}
+
     </style>
 <!--<title>Web Page Design</title>-->
 	<script type="text/javascript">
@@ -26,36 +41,59 @@
                 button.onclick = onButtonClick;
             };
             var onButtonClick = function() {
-							showNumbers();
+				showNumbers();
             };
             init();
-						function showNumbers() {
-							var num1, num2, num3, num4;
-							num1 = Math.floor(1+Math.random()*10);
-							do {
-								num2 = Math.floor(1+Math.random()*10);
-							} while(num2 == num1);
-							do {
-								num3 = Math.floor(1+Math.random()*10);
-							} while(num3 == num1 || num3 == num2);
-							do {
-								num4 = Math.floor(1+Math.random()*10);
-							} while(num4 == num1 || num4 == num2 || num4 == num3);
-							document.getElementById('Chosen Numbers').innerHTML = num1 + " " + num2 + " " + num3 + " " + num4; 
-						}
         }
+		function showNumbers() {
+			var num1, num2, num3, num4;
+			num1 = Math.floor(1+Math.random()*10);
+			do {
+				num2 = Math.floor(1+Math.random()*10);
+			} while(num2 === num1);
+			do {
+				num3 = Math.floor(1+Math.random()*10);
+			} while(num3 === num1 || num3 == num2);
+			do {
+				num4 = Math.floor(1+Math.random()*10);
+			} while(num4 === num1 || num4 === num2 || num4 === num3);
+			document.getElementById('Chosen Numbers').innerHTML = num1 + " " + num2 + " " + num3 + " " + num4; 
+			var chosenValue1 = document.getElementById("num1").value;
+			var chosenValue2 = document.getElementById("num2").value;
+			var chosenValue3 = document.getElementById("num3").value;
+			var chosenValue4 = document.getElementById("num4").value;
+			//alert("You chose: "+chosenValue1+", "+chosenValue2+", "+chosenValue3+", "+chosenValue4);
+			var realNumsArray = [num1, num2, num3, num4];
+			var chosenNumsArray = [chosenValue1, chosenValue2, chosenValue3, chosenValue4];
+			alertReward(realNumsArray, chosenNumsArray);
+		}
+		function alertReward(realValues, chosenValues) {
+			var pointCount = 0;
+			for(var i = 0; i < 4; i++) {
+				for(var j = 0; j < 4; j++) {
+					if(realValues[i]==chosenValues[j]) {
+						pointCount+=1;
+					}
+					
+				}
+			}
+			alert("You got: "+pointCount+" points!");
+		}
 	</script>
+<title>Stats Carnival Project Site</title>
 </head>
 <body>
-	<form>
-		Pick your 4 numbers:
-		<input type="number" class="smallNum" name="num1" min="1" max="10">
-		<input type="number" class="smallNum" name="num2" min="1" max="10">
-		<input type="number" class="smallNum" name="num3" min="1" max="10">
-		<input type="number" class="smallNum" name="num4" min="1" max="10">
-		</br>
-		<input type="button" class="bigButt" id = "inputButton" onclick="" value="CLICK">
-	</form>
+	<div id="centeredContainer">
+		<form>
+			Pick your 4 numbers: </br>
+			<input type="number" class="smallNum" id="num1" min="1" max="10">
+			<input type="number" class="smallNum" id="num2" min="1" max="10">
+			<input type="number" class="smallNum" id="num3" min="1" max="10">
+			<input type="number" class="smallNum" id="num4" min="1" max="10">
+			</br></br>
+			<input type="button" class="bigButt" id = "inputButton" value="CLICK">
+		</form>
+	</div>
 	<script>
 		var randomizerButton = new randomizerButton(
 			document.getElementById("inputButton"));
