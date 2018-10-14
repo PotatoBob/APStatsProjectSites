@@ -1,5 +1,6 @@
 <html>
 <head>
+	<link rel="stylesheet" href="TestSlot1.css">
     <style type="text/CSS">
         /*button.BIG {
             background-color: #4CAF50; // Green 
@@ -17,7 +18,7 @@
 			font-size: 100px;
 		}
 		.bigButt {
-			background-color: #4CAF50;
+			background-color: #4CAF50; //Green
 			border: none;
 			padding: 15px 32px;
 			color: white;
@@ -47,17 +48,27 @@
         }
 		function showNumbers() {
 			var num1, num2, num3, num4;
-			num1 = Math.floor(1+Math.random()*10);
+			num1 = Math.floor(Math.random()*10);
 			do {
-				num2 = Math.floor(1+Math.random()*10);
+				num2 = Math.floor(Math.random()*10);
 			} while(num2 === num1);
 			do {
-				num3 = Math.floor(1+Math.random()*10);
+				num3 = Math.floor(Math.random()*10);
 			} while(num3 === num1 || num3 == num2);
 			do {
-				num4 = Math.floor(1+Math.random()*10);
+				num4 = Math.floor(Math.random()*10);
 			} while(num4 === num1 || num4 === num2 || num4 === num3);
-			document.getElementById('Chosen Numbers').innerHTML = num1 + " " + num2 + " " + num3 + " " + num4; 
+			document.getElementById('Chosen Numbers').innerHTML = num1 + "," + num2 + "," + num3 + "," + num4; 
+			<!------------------>
+			var concatedNums = num1+String.fromCharCode(160)+num2+String.fromCharCode(160)+num3+String.fromCharCode(160)+num4;
+			odoo.default({
+				el:'.js-odoo',
+				from: '0  0  0  0  0  0',
+				to: concatedNums,
+				animationDelay: 1000
+			});
+			//alert(concatedNums);
+			<!------------------>
 			var chosenValue1 = document.getElementById("num1").value;
 			var chosenValue2 = document.getElementById("num2").value;
 			var chosenValue3 = document.getElementById("num3").value;
@@ -65,9 +76,9 @@
 			//alert("You chose: "+chosenValue1+", "+chosenValue2+", "+chosenValue3+", "+chosenValue4);
 			var realNumsArray = [num1, num2, num3, num4];
 			var chosenNumsArray = [chosenValue1, chosenValue2, chosenValue3, chosenValue4];
-			alertReward(realNumsArray, chosenNumsArray);
+			//alertReward(realNumsArray, chosenNumsArray);
 		}
-		function alertReward(realValues, chosenValues) {
+		/*function alertReward(realValues, chosenValues) {
 			var pointCount = 0;
 			for(var i = 0; i < 4; i++) {
 				for(var j = 0; j < 4; j++) {
@@ -78,18 +89,19 @@
 				}
 			}
 			alert("You got: "+pointCount+" points!");
-		}
+		}*/
+		
 	</script>
 <title>Stats Carnival Project Site</title>
 </head>
 <body>
 	<div id="centeredContainer">
 		<form>
-			Pick your 4 numbers: </br>
-			<input type="number" class="smallNum" id="num1" min="1" max="10">
-			<input type="number" class="smallNum" id="num2" min="1" max="10">
-			<input type="number" class="smallNum" id="num3" min="1" max="10">
-			<input type="number" class="smallNum" id="num4" min="1" max="10">
+			Pick your 4 numbers (0-9): </br>
+			<input type="number" class="smallNum" id="num1" min="0" max="9">
+			<input type="number" class="smallNum" id="num2" min="0" max="9">
+			<input type="number" class="smallNum" id="num3" min="0" max="9">
+			<input type="number" class="smallNum" id="num4" min="0" max="9">
 			</br></br>
 			<input type="button" class="bigButt" id = "inputButton" value="CLICK">
 		</form>
@@ -98,11 +110,10 @@
 		var randomizerButton = new randomizerButton(
 			document.getElementById("inputButton"));
 	</script>
-	<!--<h5><button id='button' class='BIG'>CLICK HERE</button></h5>
-			<script>
-				var uselessWebButton = new uselessWebButton( document.getElementById( 'button' ) ); 
-			</script>-->
 	<p>The numbers are:</p>
 	<h1 id='Chosen Numbers'></h1>
+	<script src="odoo.js"></script>
+	<div class="js-odoo"></div>
+	
 </body>
 </html>
