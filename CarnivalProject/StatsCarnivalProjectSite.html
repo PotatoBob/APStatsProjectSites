@@ -12,7 +12,7 @@
             display: inline-block;
             font-size: 40px;
         }*/
-		.smallNum {
+		.bigNums {
 			width: 140px;
 			height: 100px;
 			font-size: 100px;
@@ -23,14 +23,6 @@
 			padding: 15px 32px;
 			color: white;
 			font-size: 40px;
-		}
-		#container {
-			display: flex;              /* establish flex container */
-			flex-direction: column;     /* stack flex items vertically */
-			justify-content: center;    /* center items vertically, in this case */
-			align-items: center;        /* center items horizontally, in this case */
-			height: 300px;
-			border: 1px solid black;
 		}
 
     </style>
@@ -60,10 +52,10 @@
 			} while(num4 === num1 || num4 === num2 || num4 === num3);
 			document.getElementById('Chosen Numbers').innerHTML = num1 + "," + num2 + "," + num3 + "," + num4; 
 			<!------------------>
-			var concatedNums = num1+String.fromCharCode(160)+num2+String.fromCharCode(160)+num3+String.fromCharCode(160)+num4;
+			var concatedNums = num1+" "+num2+" "+num3+" "+num4;
 			odoo.default({
 				el:'.js-odoo',
-				from: '0  0  0  0  0  0',
+				from: '0 0 0 0',
 				to: concatedNums,
 				animationDelay: 1000
 			});
@@ -76,9 +68,10 @@
 			//alert("You chose: "+chosenValue1+", "+chosenValue2+", "+chosenValue3+", "+chosenValue4);
 			var realNumsArray = [num1, num2, num3, num4];
 			var chosenNumsArray = [chosenValue1, chosenValue2, chosenValue3, chosenValue4];
-			//alertReward(realNumsArray, chosenNumsArray);
+			setTimeout(alertReward(realNumsArray, chosenNumsArray), 5000);
+			alertReward(realNumsArray, chosenNumsArray);
 		}
-		/*function alertReward(realValues, chosenValues) {
+		function alertReward(realValues, chosenValues) {
 			var pointCount = 0;
 			for(var i = 0; i < 4; i++) {
 				for(var j = 0; j < 4; j++) {
@@ -88,32 +81,46 @@
 					
 				}
 			}
-			alert("You got: "+pointCount+" points!");
-		}*/
+			//alert("You got: "+pointCount+" points!");
+			document.getElementById("scoreLabel").innerHTML = "You got "+pointCount+" points!"
+			if(pointCount<4 && pointCount>1) {
+				document.getElementById("scoreLabel").innerHTML += " Congratulations, you get "+pointCount+" pieces of candy!";
+			} else if(pointCount === 1) {
+				document.getElementById("scoreLabel").innerHTML += " Congratulations, you get 1 piece of candy!";
+			} else if(pointCount === 4) {
+				document.getElementById("scoreLabel").innerHTML = "WINNER WINNER!!! YOU GET 7 PIECES OF CANDY!!!"
+				var audio = new Audio('ChickenDinner.mp3');
+				audio.play();
+			} else if(pointCount === 0) {
+				document.getElementById("scoreLabel").innerHTML = "You won a fat nothing!"
+				var audio = new Audio('SIKE.mp3');
+				audio.play();
+			}
+		}
 		
 	</script>
 <title>Stats Carnival Project Site</title>
 </head>
 <body>
-	<div id="centeredContainer">
-		<form>
-			Pick your 4 numbers (0-9): </br>
-			<input type="number" class="smallNum" id="num1" min="0" max="9">
-			<input type="number" class="smallNum" id="num2" min="0" max="9">
-			<input type="number" class="smallNum" id="num3" min="0" max="9">
-			<input type="number" class="smallNum" id="num4" min="0" max="9">
-			</br></br>
-			<input type="button" class="bigButt" id = "inputButton" value="CLICK">
-		</form>
+	<form>
+		<p>Pick your 4 numbers (0-9):</p> </br>
+		<input type="number" class="bigNums" id="num1" min="0" max="9">
+		<input type="number" class="bigNums" id="num2" min="0" max="9">
+		<input type="number" class="bigNums" id="num3" min="0" max="9">
+		<input type="number" class="bigNums" id="num4" min="0" max="9">
+		</br></br>
+		<input type="button" class="bigButt" id = "inputButton" value="CLICK">
+	</form>
+	<!--<p>The numbers are:</p>-->
+	<h1 id='Chosen Numbers'></h1>
+	<div class="js-odoo">
+	</br></br>
 	</div>
+	<script src="odoo.js"></script>
 	<script>
 		var randomizerButton = new randomizerButton(
 			document.getElementById("inputButton"));
 	</script>
-	<p>The numbers are:</p>
-	<h1 id='Chosen Numbers'></h1>
-	<script src="odoo.js"></script>
-	<div class="js-odoo"></div>
-	
+	<h1 id="scoreLabel" justify-content="center">What's your score?</h1>
 </body>
 </html>
