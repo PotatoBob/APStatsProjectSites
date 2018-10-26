@@ -1,56 +1,40 @@
 <html>
 <head>
-	<!--<link rel="stylesheet" href="TestSlot1.css">-->
-    <style type="text/CSS">
-        /*button.BIG {
-            background-color: #4CAF50; // Green 
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 40px;
-        }*/
+       <style type="text/CSS">
 		.bigNums {
 			width: 140px;
 			height: 100px;
 			font-size: 100px;
 		}
 		.bigButt {
-			background-color: #4CAF50; <!--Green-->
+			background-color: #FF5733; //Orange
 			border: none;
 			padding: 15px 32px;
-			color: white;
-			font-size: 40px;
+			color: #000000;
+			font-size: 40px
 		}
 		html, body {
 		  height: 100%;
 		  width: 100%;
 		  overflow: hidden;
-		  background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
-		  //background-color: #FFFFFF; //Orange
+		  background-color: #000000; //Black
 		}
-
 		p, h1, form {
 			text-align: center;
 		}
-
 		.js-odoo {
-		  /*background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);*/
-		  font-family: 'Inconsolata';
 		  font-weight: bold;
 		  font-size: 40vmin;
 		  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-		  fill: #fff;
+		  fill: #f53;
 		  display: flex;
 		  justify-content: center;
 		  align-items: center;
 		 }
 
     </style>
-<!--<title>Web Page Design</title>-->
 	<script type="text/javascript">
+    var prevConcatNumbers = "0 0 0 0";
 		var numNumbers = 4;
         function randomizerButton(button/*, popup*/) {
             var init = function() {
@@ -72,70 +56,25 @@
 			} while(num3 === num1 || num3 == num2);
 			do {
 				num4 = Math.floor(Math.random()*10);
-			} while(num4 === num1 || num4 === num2 || num4 === num3);
-			//document.getElementById('Chosen Numbers').innerHTML = num1 + "," + num2 + "," + num3 + "," + num4; 
+			} while(num4 === num1 || num4 === num2 || num4 === num3); 
 			<!------------------>
 			var concatedNums = num1+" "+num2+" "+num3+" "+num4;
 			odoo.default({
 				el:'.js-odoo',
-				from: '0 0 0 0',
+				from: prevConcatNumbers,
 				to: concatedNums,
 				animationDelay: 500,
 			});
-			//alert(concatedNums);
-			<!------------------>
-			/*var chosenValue1 = document.getElementById("num1").value;
-			var chosenValue2 = document.getElementById("num2").value;
-			var chosenValue3 = document.getElementById("num3").value;
-			var chosenValue4 = document.getElementById("num4").value;*/
-			//alert("You chose: "+chosenValue1+", "+chosenValue2+", "+chosenValue3+", "+chosenValue4);
-			//var realNumsArray = [num1, num2, num3, num4];
-			//var chosenNumsArray = [chosenValue1, chosenValue2, chosenValue3, chosenValue4];
-			//setTimeout(alertReward(realNumsArray, chosenNumsArray), 5000);
-			//alertReward(realNumsArray, chosenNumsArray);
+      			prevConcatNumbers = concatedNums;
 		}
-		/*function alertReward(realValues, chosenValues) {
-			var pointCount = 0;
-			for(var i = 0; i < 4; i++) {
-				for(var j = 0; j < 4; j++) {
-					if(realValues[i]==chosenValues[j]) {
-						pointCount+=1;
-					}
-					
-				}
-			}
-			//alert("You got: "+pointCount+" points!");
-			document.getElementById("scoreLabel").innerHTML = "You got "+pointCount+" points!"
-			if(pointCount<4 && pointCount>1) {
-				document.getElementById("scoreLabel").innerHTML += " Congratulations, you get "+pointCount+" pieces of candy!";
-			} else if(pointCount === 1) {
-				document.getElementById("scoreLabel").innerHTML += " Congratulations, you get 1 piece of candy!";
-			} else if(pointCount === 4) {
-				document.getElementById("scoreLabel").innerHTML = "WINNER WINNER!!! YOU GET 7 PIECES OF CANDY!!!"
-				var audio = new Audio('ChickenDinner.mp3');
-				audio.play();
-			} else if(pointCount === 0) {
-				document.getElementById("scoreLabel").innerHTML = "You won a fat nothing!"
-				var audio = new Audio('SIKE.mp3');
-				audio.play();
-			}
-		}*/
-		
 	</script>
 <title>Stats Carnival Project Site</title>
 </head>
 <body>
-	<form>
-		<!--<p>Pick your 4 numbers (0-9):</p> </br>
-		<input type="number" class="bigNums" id="num1" min="0" max="9">
-		<input type="number" class="bigNums" id="num2" min="0" max="9">
-		<input type="number" class="bigNums" id="num3" min="0" max="9">
-		<input type="number" class="bigNums" id="num4" min="0" max="9">
-		</br></br>-->
+	<!--<form>
 		<input type="button" class="bigButt" id = "inputButton" value="TAP TO SPIN">
-	</form>
-	<!--<p>The numbers are:</p>-->
-	<!--<h1 id='Chosen Numbers'></h1>-->
+	</form>-->
+	<button type="button" class="bigButt" id="inputButton">TAP TO SPIN</button>
 	<div class="js-odoo">
 	<script src="odoo.js"></script>
 	</div>
@@ -143,6 +82,5 @@
 		var randomizerButton = new randomizerButton(
 			document.getElementById("inputButton"));
 	</script>
-	<!--<h1 id="scoreLabel" justify-content="center">What's your score?</h1>-->
 </body>
 </html>
