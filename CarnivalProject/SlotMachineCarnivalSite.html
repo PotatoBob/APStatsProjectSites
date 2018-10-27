@@ -1,0 +1,144 @@
+<html>
+<head>
+	<style type="text/CSS">
+		.bigNums {
+			width: 140px;
+			height: 100px;
+			font-size: 100px;
+		}
+		.bigButt {
+			background-color: #FF5733; //Orange
+			border: none;
+			padding: 15px 32px;
+			color: #000000;
+			font-size: 40px;
+		}
+		html, body {
+		  height: 100%;
+		  width: 100%;
+		  overflow: hidden;
+		  background-color: #000000; //Black
+		}
+		p, h1, form {
+			text-align: center;
+		}
+		.js-odoo-1 {
+		  font-weight: bold;
+		  font-size: 40vmin;
+		  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+		  fill: #f53;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		 }
+		.js-odoo-2 {
+		  font-weight: bold;
+		  font-size: 40vmin;
+		  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+		  fill: #f53;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		 }
+		.js-odoo-3 {
+		  font-weight: bold;
+		  font-size: 40vmin;
+		  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+		  fill: #f53;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		 }
+		.js-odoo-4 {
+		  font-weight: bold;
+		  font-size: 40vmin;
+		  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+		  fill: #f53;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		 }
+
+    </style>
+	<script type="text/javascript">
+		var prevNum1='0', prevNum2='0', prevNum3='0', prevNum4='0';
+        function randomizerButton(button) {
+            var init = function() {
+                button.onclick = onButtonClick;
+            };
+            var onButtonClick = function() {
+				showNumbers();
+            };
+            init();
+        }
+		function showNumbers() {
+			var num1, num2, num3, num4;
+			num1 = Math.floor(Math.random()*10);
+			do {
+				num2 = Math.floor(Math.random()*10);
+			} while(num2 === num1);
+			do {
+				num3 = Math.floor(Math.random()*10);
+			} while(num3 === num1 || num3 == num2);
+			do {
+				num4 = Math.floor(Math.random()*10);
+			} while(num4 === num1 || num4 === num2 || num4 === num3); 
+			
+			odoo.default({
+				el:'.js-odoo-1',
+				from: prevNum1,
+				to: num1,
+				animationDelay: 500,
+			});
+			odoo.default({
+				el:'.js-odoo-2',
+				from: prevNum2,
+				to: num2,
+				animationDelay: 700,
+			});
+			odoo.default({
+				el:'.js-odoo-3',
+				from: prevNum3,
+				to: num3,
+				animationDelay: 900,
+			});
+			odoo.default({
+				el:'.js-odoo-4',
+				from: prevNum4,
+				to: num4,
+				animationDelay: 1100,
+			});
+			
+			prevNum1 = num1;
+			prevNum2 = num2;
+			prevNum3 = num3;
+			prevNum4 = num4;
+		}
+	</script>
+<title>Lottery Picker</title>
+</head>
+<body>
+	<div style="text-align:center;">
+		<button type="button" class="bigButt" id="inputButton">TAP TO SPIN</button>
+	</div>
+	<table style="width:100%; color:#FFFFFF;">
+	  <tr>
+		<th>Num 1</th>
+		<th>Num 2</th> 
+		<th>Num 3</th>
+		<th>Num 4</th>
+		<th>LEVER</th>
+	  </tr>
+	  <tr>
+		<td><script class="js-odoo-1" src="odoo.js"></script></td>
+		<td><script class="js-odoo-2" src="odoo.js"></script></td>
+		<td><script class="js-odoo-3" src="odoo.js"></script></td>
+		<td><script class="js-odoo-4" src="odoo.js"></script></td>
+	  </tr>
+	</table>
+	<script>
+		var randomizerButton = new randomizerButton(
+			document.getElementById("inputButton"));
+	</script>
+</body>
+</html>
